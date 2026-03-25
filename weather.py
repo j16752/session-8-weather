@@ -88,12 +88,24 @@ def menu(data_table):
     print("Select a data series:")
     choice = get_user_choice(series_titles)
     series = data_table[choice]
-    print(f"Mean: {mean(data_table[choice])}")
-    print(f"Variance: {variance(data_table[choice])}")
-    print(f"Standard Deviation: {standard_deviation(data_table[choice])}")
-    print(f"Range: {range_function(data_table[choice])}")
-    print(f"Median: {median(data_table[choice])}")
-    print(f"IQR: {interquartile_range(data_table[choice])}")
+    print("Select what you would like to calculate:"
+          "\n1. Mean\n2. Variance\n3. Standard Deviation\n4. Range"
+          "\n5. Median\n6. IQR")
+    user_choice = int(input("Enter the number of your choice: "))
+    if user_choice == 1:
+        print(f"Mean: {mean(data_table[choice])}")
+    elif user_choice == 2:
+        print(f"Variance: {variance(data_table[choice])}")
+    elif user_choice == 3:
+        print(f"Standard Deviation: {standard_deviation(data_table[choice])}")
+    elif user_choice == 4:
+        print(f"Range: {range_function(data_table[choice])}")
+    elif user_choice == 5:
+        print(f"Median: {median(data_table[choice])}")
+    elif user_choice == 6:
+        print(f"Median: {median(data_table[choice])}")
+    elif user_choice == 7:
+        print(f"IQR: {interquartile_range(data_table[choice])}")
     
 if __name__ == "__main__":
     data = read_csv('weather.csv')
