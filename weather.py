@@ -8,7 +8,16 @@ def mean(in_series):
     return sum(cleaned) / len(cleaned)
 
 def variance(in_series):
-    pass
+    cleaned = []
+    for x in in_series:
+        if x is not None:
+            cleaned.append(x)
+
+    avg = mean(cleaned)  # also fix: pass cleaned, not in_series
+
+    squared_diffs = [(x - avg) ** 2 for x in cleaned]
+    return sum(squared_diffs) / len(cleaned)
+    
 
 def standard_deviation(in_series):
     pass
@@ -42,6 +51,7 @@ def menu(data_table):
     choice = get_user_choice(series_titles)
     series = data_table[choice]
     print(f"Mean: {mean(data_table[choice])}")
+    print(f"Variance: {variance(data_table[choice])}")
 
 if __name__ == "__main__":
     data = read_csv('weather.csv')
