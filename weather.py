@@ -31,6 +31,34 @@ def range_function(in_series):
     max_value = max(cleaned)
     return (max_value - min_value)
         
+def median(in_series):
+    cleaned = []
+    for x in in_series:
+        if x is not None:
+            cleaned.append(x)
+    cleaned.sort()
+    m = len(cleaned)
+    if m % 2 == 0: # even-length list
+        return ((cleaned[m//2 - 1] + cleaned[m//2]) / 2)
+    else: # odd-length list
+        return cleaned[m//2]
+
+def interquartile_range(in_series):
+    cleaned = []
+    for x in in_series:
+        if x is not None:
+            cleaned.append(x)
+    n = len(cleaned)
+    cleaned.sort()
+    if n % 2 == 0:
+        lower_half = cleaned[:n//2]
+        upper_half = cleaned[n//2:]
+    else:
+        lower_half = cleaned[:n//2]
+        upper_half = cleaned[n//2 + 1:]
+    Q1 = median(lower_half)
+    Q3 = median(upper_half)
+    return (Q3 - Q1)
 
 def filter_series(year_series, month_series, day_series, data_series, max_date=None, min_date=None):
     pass
@@ -76,6 +104,24 @@ def menu(data_table):
     print(f"Standard Deviation: {standard_deviation(data_table[choice])}")
     print(f"Range: {range_function(data_table[choice])}")
     print(f"Date Range: {date_range(data_table[choice])}")
+    print("Select what you would like to calculate:"
+          "\n1. Mean\n2. Variance\n3. Standard Deviation\n4. Range"
+          "\n5. Median\n6. IQR")
+    user_choice = int(input("Enter the number of your choice: "))
+    if user_choice == 1:
+        print(f"Mean: {mean(data_table[choice])}")
+    elif user_choice == 2:
+        print(f"Variance: {variance(data_table[choice])}")
+    elif user_choice == 3:
+        print(f"Standard Deviation: {standard_deviation(data_table[choice])}")
+    elif user_choice == 4:
+        print(f"Range: {range_function(data_table[choice])}")
+    elif user_choice == 5:
+        print(f"Median: {median(data_table[choice])}")
+    elif user_choice == 6:
+        print(f"Median: {median(data_table[choice])}")
+    elif user_choice == 7:
+        print(f"IQR: {interquartile_range(data_table[choice])}")
     
 if __name__ == "__main__":
     data = read_csv('weather.csv')
