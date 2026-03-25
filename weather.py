@@ -17,10 +17,20 @@ def variance(in_series):
 
     squared_diffs = [(x - avg) ** 2 for x in cleaned]
     return sum(squared_diffs) / len(cleaned)
-    
 
 def standard_deviation(in_series):
-    return variance(in_series) ** 0.55
+    return variance(in_series) ** 0.5
+
+def range_function(in_series):
+    cleaned = []
+    for x in in_series:
+        if x is not None:
+            cleaned.append(x)
+    
+    min_value = min(cleaned)
+    max_value = max(cleaned)
+    return (max_value - min_value)
+        
 
 def filter_series(year_series, month_series, day_series, data_series, max_date=None, min_date=None):
     pass
@@ -53,7 +63,9 @@ def menu(data_table):
     print(f"Mean: {mean(data_table[choice])}")
     print(f"Variance: {variance(data_table[choice])}")
     print(f"Standard Deviation: {standard_deviation(data_table[choice])}")
-
+    print(f"Range: {range_function(data_table[choice])}")
+    
+    
 if __name__ == "__main__":
     data = read_csv('weather.csv')
     menu(data)
