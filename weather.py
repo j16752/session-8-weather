@@ -12,9 +12,7 @@ def variance(in_series):
     for x in in_series:
         if x is not None:
             cleaned.append(x)
-
-    avg = mean(cleaned)  # also fix: pass cleaned, not in_series
-
+    avg = mean(cleaned)
     squared_diffs = [(x - avg) ** 2 for x in cleaned]
     return sum(squared_diffs) / len(cleaned)
 
@@ -70,10 +68,9 @@ def date_range(in_series):
         end_date = input('End date? DD.MM.YYYY ')
         start_day, start_month, start_year = map(int, start_date.split("."))
         end_day, end_month, end_year = map(int, end_date.split("."))
-        print(start_day, start_month, start_year)
-        print(end_day, end_month, end_year)
+        return f"{start_date} to {end_date}"
+    return "No date range selected"
     
-
 def read_csv(file,default_value=None):
     data_table = {}
     with open(file) as f:
@@ -104,9 +101,9 @@ def menu(data_table):
     print(f"Standard Deviation: {standard_deviation(data_table[choice])}")
     print(f"Range: {range_function(data_table[choice])}")
     print(f"Date Range: {date_range(data_table[choice])}")
-    print("Select what you would like to calculate:"
+    print("Select a data series or press 0 to quit:"
           "\n1. Mean\n2. Variance\n3. Standard Deviation\n4. Range"
-          "\n5. Median\n6. IQR")
+          "\n5. Median\n6. IQR\n0. Quit")
     user_choice = int(input("Enter the number of your choice: "))
     if user_choice == 1:
         print(f"Mean: {mean(data_table[choice])}")
