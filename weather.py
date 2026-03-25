@@ -20,7 +20,7 @@ def variance(in_series):
     
 
 def standard_deviation(in_series):
-    pass
+    return variance(in_series) ** 0.55
 
 def filter_series(year_series, month_series, day_series, data_series, max_date=None, min_date=None):
     pass
@@ -52,6 +52,7 @@ def menu(data_table):
     series = data_table[choice]
     print(f"Mean: {mean(data_table[choice])}")
     print(f"Variance: {variance(data_table[choice])}")
+    print(f"Standard Deviation: {standard_deviation(data_table[choice])}")
 
 if __name__ == "__main__":
     data = read_csv('weather.csv')
