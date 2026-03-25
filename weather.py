@@ -35,6 +35,17 @@ def range_function(in_series):
 def filter_series(year_series, month_series, day_series, data_series, max_date=None, min_date=None):
     pass
 
+def date_range(in_series):
+    enter_date = input("Do you want to enter dates? ").lower()
+    if enter_date == "yes":
+        start_date = input("Start date? DD.MM.YYYY ")
+        end_date = input('End date? DD.MM.YYYY ')
+        start_day, start_month, start_year = map(int, start_date.split("."))
+        end_day, end_month, end_year = map(int, end_date.split("."))
+        print(start_day, start_month, start_year)
+        print(end_day, end_month, end_year)
+    
+
 def read_csv(file,default_value=None):
     data_table = {}
     with open(file) as f:
@@ -64,7 +75,7 @@ def menu(data_table):
     print(f"Variance: {variance(data_table[choice])}")
     print(f"Standard Deviation: {standard_deviation(data_table[choice])}")
     print(f"Range: {range_function(data_table[choice])}")
-    
+    print(f"Date Range: {date_range(data_table[choice])}")
     
 if __name__ == "__main__":
     data = read_csv('weather.csv')
