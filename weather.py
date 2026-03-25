@@ -63,6 +63,17 @@ def interquartile_range(in_series):
 def filter_series(year_series, month_series, day_series, data_series, max_date=None, min_date=None):
     pass
 
+def date_range(in_series):
+    enter_date = input("Do you want to enter dates? ").lower()
+    if enter_date == "yes":
+        start_date = input("Start date? DD.MM.YYYY ")
+        end_date = input('End date? DD.MM.YYYY ')
+        start_day, start_month, start_year = map(int, start_date.split("."))
+        end_day, end_month, end_year = map(int, end_date.split("."))
+        print(start_day, start_month, start_year)
+        print(end_day, end_month, end_year)
+    
+
 def read_csv(file,default_value=None):
     data_table = {}
     with open(file) as f:
@@ -88,6 +99,11 @@ def menu(data_table):
     print("Select a data series:")
     choice = get_user_choice(series_titles)
     series = data_table[choice]
+    print(f"Mean: {mean(data_table[choice])}")
+    print(f"Variance: {variance(data_table[choice])}")
+    print(f"Standard Deviation: {standard_deviation(data_table[choice])}")
+    print(f"Range: {range_function(data_table[choice])}")
+    print(f"Date Range: {date_range(data_table[choice])}")
     print("Select what you would like to calculate:"
           "\n1. Mean\n2. Variance\n3. Standard Deviation\n4. Range"
           "\n5. Median\n6. IQR")
